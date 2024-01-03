@@ -1,0 +1,147 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{enumerate}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=blue,
+	urlcolor=blue,
+	citecolor=blue,
+}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[margin=3cm]{geometry}
+\usepackage{mathpazo}
+\usepackage{url}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{cleveref}
+\usepackage{bbm}
+\usepackage{wrapfig}
+\usepackage{mathrsfs}
+\usepackage{afterpage}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{con*}{Conjecture}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{quest}[thm]{Question}
+\newtheorem{obs}[thm]{Observation}
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\setcounter{tocdepth}{2}
+
+\allowdisplaybreaks
+
+\title{Software for Mathematical Scientists and Educators}
+\author{Joshua Maglione}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section*{Introduction}
+
+Communicating mathematics and performing long computations are both vitally
+important and challenging. Thankfully there is a wide selection of software to
+make these tasks more manageable. In this module, we will explore software used
+by everyday mathematicians and scientists. These include biologists, chemists,
+computer scientists, data scientists, financial analysts, educators, engineers,
+and physicists. 
+
+The goal is to build a foundation by using some of the most ubiquitous software
+in the field. This will help students throughout their career in and out of
+university. We will cover four topics in this module:
+\begin{enumerate} 
+	\item Mathematical Typesetting and \LaTeX,
+	\item Python and Jupyter Notebooks,
+	\item Introduction to Programming,
+	\item Symbolic Computation and SageMath.
+\end{enumerate}
+
+
+\section{Mathematical Typesetting and \LaTeX}
+
+With advances in printing and typesetting, the question of how to produce
+high-quality mathematical symbols and texts is challenging. Without going
+through the history, we now have essentially two main styles of software to
+write mathematical formulae, diagrams, and images:
+\begin{enumerate}
+	\item What-You-See-Is-What-You-Get (WYSIWYG) and
+	\item typesetting software (or write-format-preview style).
+\end{enumerate}
+
+Software like Microsoft Word, Apple Pages, or LibreOffice Writer are WYSIWYG
+editors because you see and edit the document as a final product (regardless of
+whether or not it is the final product). This remove the user from having to
+remember commands for the document layout, and it has a lower barrier of entry,
+which is one of its strongest advantages. However, this is not the norm for
+professionals using many mathematical symbols, and the primary disadvantage to
+these kinds of software is their sluggish pace. 
+
+One of the first typesetting software for mathematics is \TeX---if not
+\textit{the} first. It was written by Donald Knuth\footnote{You can read Knuth's
+original memo describing \TeX. He called the memo the ``Preliminary preliminary
+description of TEX''~\cite{TeX-draft}.} in 1978~\cite{Knuth-Quanta}, and it is
+the cornerstone of the more modern software \LaTeX\ written by Leslie Lamport in
+1986~\cite{Lamport}. Although \TeX\ is still used today, \LaTeX\ is far more
+popular. The primary disadvantage to these systems is the higher barrier to
+entry, but the over-powering advantage is the speed with which one can produce
+beautiful and high-quality mathematical symbols. Both \TeX\ and \LaTeX\ are free
+and open-source software. 
+
+As alluded to previously, these are typesetting software, so a user writes in a
+markup language, usually in a \texttt{tex}-file; then the user compiles the
+file, and a \texttt{pdf}-file is produced. There are other options for output,
+but this will be sufficient for us. Another asset is that one can import third
+party \LaTeX\ packages to perform more specialized tasks. We will become
+familiar with basic \LaTeX\ formatting and use some packages to help construct
+beautiful documents. 
+
+For web-based mathematical symbols, MathJax~\cite{MathJax} is primarily used.
+However, there is a new, much faster, alternative called KaTeX~\cite{KaTeX}.
+Currently, KaTeX can only do a (proper) subset of what MathJax can do, but KaTeX
+does enough for everything I have needed for my website. 
+
+\subsection{How to get \LaTeX}
+
+
+
+\subsection{Workflow and document structure}
+
+
+
+\newpage
+
+\bibliography{bibliography}
+\bibliographystyle{plain}
+
+\end{document}
