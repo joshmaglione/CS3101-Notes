@@ -133,10 +133,33 @@ does enough for everything I have needed for my website.
 
 \subsection{How to get \LaTeX}
 
+This will not fully cover how to install \LaTeX\ on your own machine, but
+hopefully it gives you enough information to help you. It not that \LaTeX\
+updates so frequently---in fact \LaTeX\ is still on its second edition
+(formatted as \LaTeXe)---it is that packages tend to update or just need
+installation. 
 
+For Windows machines, I would recommend MiKTeX. This install LaTeX and comes
+with a package manager to help with package installation. A similar version is
+available on Mac OS, and it is called MacTeX. Both MiKTeX and MacTeX have
+graphical user interfaces. For Linux systems, TeX Live is what I recommend, and
+it usually comes pre-installed. It has its own package manager invoked by the
+command \texttt{tlmgr}. 
 
 \subsection{Workflow and document structure}
 
+The basic workflow is perhaps only a little more complicated than how it might
+be for WYSIWYG software. Here is the basic workflow. 
+\begin{enumerate}
+	\item Create a \texttt{tex}-file and write \LaTeX\ markup. 
+	\item Compile the \texttt{tex}-file with the command \texttt{pdflatex}.
+	\item Sometimes errors are raised and need to be addressed. If no errors arise, then a \texttt{pdf}-file is created (or overwritten).
+	\item View and review the output \texttt{pdf}-file. 
+\end{enumerate}
+With the exception of the initial creation of the file, all of these steps are
+repeated often. How often? That depends on you and your situation. I would
+recommend that, when addressing bugs or typos, that one compile often and review
+carefully what has changed. 
 
 
 \newpage
