@@ -27,6 +27,8 @@
 \usepackage{wrapfig}
 \usepackage{mathrsfs}
 \usepackage{afterpage}
+\usepackage[svgnames]{xcolor}
+\usepackage{newverbs}
 
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
@@ -54,6 +56,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\define}[1]{\textit{\textbf{#1}}}
 
 \setcounter{tocdepth}{2}
 
@@ -153,13 +156,148 @@ be for WYSIWYG software. Here is the basic workflow.
 \begin{enumerate}
 	\item Create a \texttt{tex}-file and write \LaTeX\ markup. 
 	\item Compile the \texttt{tex}-file with the command \texttt{pdflatex}.
-	\item Sometimes errors are raised and need to be addressed. If no errors arise, then a \texttt{pdf}-file is created (or overwritten).
+	\item Sometimes errors are raised and need to be addressed. If no errors
+	arise, then a \texttt{pdf}-file is created (or overwritten).
 	\item View and review the output \texttt{pdf}-file. 
 \end{enumerate}
 With the exception of the initial creation of the file, all of these steps are
 repeated often. How often? That depends on you and your situation. I would
 recommend that, when addressing bugs or typos, that one compile often and review
 carefully what has changed. 
+
+The basic format of a \LaTeX\ document is simple. There are three commands that
+must be present, and often one tries to adhere to some logical structure due to
+collaborations or just to readability over longer periods of time. The first
+command that appears in a functioning \texttt{tex}-file is the following:
+\begin{verbatim}
+			\documentclass[<options>]{<style>}
+\end{verbatim}
+where \texttt{<style>} is replaced with the name of the desired document class
+and \texttt{<options>} is replaced with optional parameters for the specific
+document class. For example, this current \texttt{pdf} document was built using
+\begin{verbatim}
+			\documentclass[a4paper, 12pt]{article}
+\end{verbatim}
+Some other popular document classes, besides \texttt{article}, are 
+\begin{itemize}
+	\item \texttt{beamer} : for slides,
+	\item \texttt{book} : for books,
+	\item \texttt{letter} : for letters,
+	\item \texttt{standalone} : often used with the package \texttt{TikZ} for
+	stand alone pictures.
+\end{itemize}
+There are also AMS-inspired article and book classes: \texttt{amsart} and
+\texttt{amsbook} and KOMA-script versions: \texttt{scrartcl}, \texttt{scrbook},
+\texttt{scrlttr2}, and \texttt{scrreprt}. The other two required commands are 
+\begin{verbatim}
+			\begin{document}
+			\end{document}
+\end{verbatim}
+which encapsulate the main body of the \texttt{tex}-file. \Cref{fig:tex-file}
+shows the basic layout of a \texttt{tex}-file.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\draw (0,-1) rectangle (12,5);
+		\draw[fill=Crimson] (0.2, 3.2) rectangle (11.8, 4.3);
+		\draw[fill=RoyalBlue] (0.2, -0.3) rectangle (11.8, 2.6);
+		\node at (3.8,4.6) {\verb_\documentclass[<options>]{<style>}_};
+		\node at (1.85,2.9) {\verb_\begin{document}_};
+		\node at (1.65,-0.6) {\verb_\end{document}_};
+		\node[White] at (6, 3.75) {\textbf{preamble}};
+		\node[White] at (6, 1.15) {\textbf{body}};
+	\end{tikzpicture}
+	\caption{Basic structure of a \texttt{tex} file.}
+	\label{fig:tex-file}
+\end{figure}
+
+\subsection{Source files}
+
+\LaTeX\ \define{source files} are the necessary files needed to compile a
+\texttt{tex} file. In particular, a \texttt{tex} file need not be self
+contained; there are many reasons why this might be the case. For example, one
+might embed graphics in the form of \texttt{jpeg} or \texttt{png} files, or one
+might use \textsc{Bib}\TeX\ to dynamically format their bibliography---more on
+this in \Cref{sec:bibtex}.
+
+In the process of compiling a \texttt{tex} file to a \texttt{pdf} file, \LaTeX\
+produces several auxillary files. These serve specific purposes, but their
+particular uses are outside of the scope we will explore. Because so many
+additional files are created in the compilation process, it is usually preferred
+to build a directory for each \LaTeX\ project. For example, the file names in
+the directory for these lecture notes can be seen in \Cref{fig:all-files}.
+
+\begin{figure}[h]
+	\centering 
+	\begin{tikzpicture}
+		\node[anchor=west] at (-0.5,3.1) {{\large\texttt{LectureNotes}}};
+		\node[anchor=west] at (0,2.5) {\texttt{bibliography.bib}};
+		\node[anchor=west] at (0,2) {\texttt{LectureNotes.aux}};
+		\node[anchor=west] at (0,1.5) {\texttt{LectureNotes.bbl}};
+		\node[anchor=west] at (0,1) {\texttt{LectureNotes.blg}};
+		\node[anchor=west] at (0,0.5) {\texttt{LectureNotes.fdb\_latexmk}};
+		\node[anchor=west] at (0,0) {\texttt{LectureNotes.fls}};
+		\node[anchor=west] at (7,2.5) {\texttt{LectureNotes.log}};
+		\node[anchor=west] at (7,2) {\texttt{LectureNotes.out}};
+		\node[anchor=west] at (7,1.5) {\texttt{LectureNotes.pdf}};
+		\node[anchor=west] at (7,1) {\texttt{LectureNotes.tex}};
+		\node[anchor=west] at (7,0.5) {\texttt{LectureNotes.toc}};
+		\node[anchor=west] at (7,0) {\texttt{LectureNotes.synctex.gz}};
+		\draw (-0.1, 2.75) -- (-0.1, -0.25);
+		\draw (3, 3.1) -- (12.5, 3.1);
+	\end{tikzpicture}
+	\caption{The files in the \texttt{LectureNotes} directory.}
+	\label{fig:all-files}
+\end{figure}
+
+The only files necessary to compile in \Cref{fig:all-files} are
+\texttt{LectureNotes.tex} and \texttt{bibliography.bib}. The rest of the files
+are produced by the compilation process. 
+
+
+
+
+\subsection{An introduction to \LaTeX\ syntax}
+
+We will not cover all of the \LaTeX\ syntax here. When we discuss mathematical
+symbols and formulae in \Cref{sec:latex-math}, we will cover more. There are
+some symbols that \LaTeX\ redefines. For example, \% indicates that the rest of
+the line should be ignored by the compiler:
+\begin{verbatim}
+			% This is a comment and will be ignored by the LaTeX compiler.
+\end{verbatim}
+
+Commands in \LaTeX\ start with the \verb_\_ symbol. We have already seen
+examples of this with the following commands:
+\begin{verbatim}
+			\documentclass[a4paper, 12pt]{article}
+			\begin{document}
+			\end{document}
+\end{verbatim}
+Arguments are input using the \verb_{_ and \verb_}_ symbols, and multiple
+arguments would require multiple sets of \verb_{_ and \verb_}_. Optional
+parameters are input using the \verb_[_ and \verb_]_ symbols, but multiple
+optional parameters are listed within the single use of \verb_[_ and \verb_]_
+separated by commas. Not every command requires input arguments; for example, to
+format LaTeX as \LaTeX, one uses the command .
+
+\subsection{Dynamic bibliographies and \textsc{Bib}\TeX}
+\label{sec:bibtex}
+
+
+\subsection{Mathematical symbols and formulae}
+\label{sec:latex-math}
+
+
+\subsection{\LaTeX\ Environments}
+\label{sec:latex-envs}
+
+
+\subsection{Some \LaTeX\ packages}
+\label{sec:latex-packages}
+
+
 
 
 \newpage
