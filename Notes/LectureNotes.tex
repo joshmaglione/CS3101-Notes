@@ -28,7 +28,7 @@
 \usepackage{mathrsfs}
 \usepackage{afterpage}
 \usepackage[svgnames]{xcolor}
-\usepackage{newverbs}
+\usepackage{minted}
 
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
@@ -56,7 +56,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\define}[1]{\textit{\textbf{#1}}}
+\newcommand{\define}[1]{\textit{#1}}
 
 \setcounter{tocdepth}{2}
 
@@ -149,7 +149,16 @@ graphical user interfaces. For Linux systems, TeX Live is what I recommend, and
 it usually comes pre-installed. It has its own package manager invoked by the
 command \texttt{tlmgr}. 
 
+We will primarily use Overleaf in this module. Overleaf is a website that
+enables users to interface with \LaTeX\ through cloud-based services. It uses a
+``freeium'' model, so that everyone can use the basic features, which will be
+sufficient for our module. The major advantage is that one does not have to
+worry about installing and package management; all of this is done cloud-side.
+Moreover Overleaf simplifies the workflow slightly by allowing for instant
+compilation. 
+
 \subsection{Workflow and document structure}
+\label{sec:workflow}
 
 The basic workflow is perhaps only a little more complicated than how it might
 be for WYSIWYG software. Here is the basic workflow. 
@@ -169,15 +178,15 @@ The basic format of a \LaTeX\ document is simple. There are three commands that
 must be present, and often one tries to adhere to some logical structure due to
 collaborations or just to readability over longer periods of time. The first
 command that appears in a functioning \texttt{tex}-file is the following:
-\begin{verbatim}
-			\documentclass[<options>]{<style>}
-\end{verbatim}
+\begin{minted}{latex}
+	\documentclass[<options>]{<style>}
+\end{minted}
 where \texttt{<style>} is replaced with the name of the desired document class
 and \texttt{<options>} is replaced with optional parameters for the specific
 document class. For example, this current \texttt{pdf} document was built using
-\begin{verbatim}
-			\documentclass[a4paper, 12pt]{article}
-\end{verbatim}
+\begin{minted}{latex}
+	\documentclass[a4paper, 12pt]{article}
+\end{minted}
 Some other popular document classes, besides \texttt{article}, are 
 \begin{itemize}
 	\item \texttt{beamer} : for slides,
@@ -189,10 +198,10 @@ Some other popular document classes, besides \texttt{article}, are
 There are also AMS-inspired article and book classes: \texttt{amsart} and
 \texttt{amsbook} and KOMA-script versions: \texttt{scrartcl}, \texttt{scrbook},
 \texttt{scrlttr2}, and \texttt{scrreprt}. The other two required commands are 
-\begin{verbatim}
-			\begin{document}
-			\end{document}
-\end{verbatim}
+\begin{minted}{latex}
+	\begin{document}
+	\end{document}
+\end{minted}
 which encapsulate the main body of the \texttt{tex}-file. \Cref{fig:tex-file}
 shows the basic layout of a \texttt{tex}-file.
 
@@ -202,9 +211,9 @@ shows the basic layout of a \texttt{tex}-file.
 		\draw (0,-1) rectangle (12,5);
 		\draw[fill=Crimson] (0.2, 3.2) rectangle (11.8, 4.3);
 		\draw[fill=RoyalBlue] (0.2, -0.3) rectangle (11.8, 2.6);
-		\node at (3.8,4.6) {\verb_\documentclass[<options>]{<style>}_};
-		\node at (1.85,2.9) {\verb_\begin{document}_};
-		\node at (1.65,-0.6) {\verb_\end{document}_};
+		\node at (3.8,4.6) {\mintinline{latex}{\documentclass[<options>]{<style>}}};
+		\node at (1.85,2.9) {\mintinline{latex}{\begin{document}}};
+		\node at (1.65,-0.6) {\mintinline{latex}{\end{document}}};
 		\node[White] at (6, 3.75) {\textbf{preamble}};
 		\node[White] at (6, 1.15) {\textbf{body}};
 	\end{tikzpicture}
@@ -262,36 +271,129 @@ are produced by the compilation process.
 
 We will not cover all of the \LaTeX\ syntax here. When we discuss mathematical
 symbols and formulae in \Cref{sec:latex-math}, we will cover more. There are
-some symbols that \LaTeX\ redefines. For example, \% indicates that the rest of
-the line should be ignored by the compiler:
-\begin{verbatim}
-			% This is a comment and will be ignored by the LaTeX compiler.
-\end{verbatim}
+some symbols that \LaTeX\ redefines. For example, \mintinline{latex}{%} 
+indicates that the rest of the line should be ignored by the compiler:
+\begin{minted}{latex}
+	% This is a comment and will be ignored by the
+	% LaTeX compiler.
+\end{minted}
 
-Commands in \LaTeX\ start with the \verb_\_ symbol. We have already seen
-examples of this with the following commands:
-\begin{verbatim}
-			\documentclass[a4paper, 12pt]{article}
-			\begin{document}
-			\end{document}
-\end{verbatim}
-Arguments are input using the \verb_{_ and \verb_}_ symbols, and multiple
-arguments would require multiple sets of \verb_{_ and \verb_}_. Optional
-parameters are input using the \verb_[_ and \verb_]_ symbols, but multiple
-optional parameters are listed within the single use of \verb_[_ and \verb_]_
-separated by commas. Not every command requires input arguments; for example, to
-format LaTeX as \LaTeX, one uses the command .
+Commands in \LaTeX\ start with the \mintinline{latex}{\} symbol. We have already
+seen examples of this with the following commands:
+\begin{minted}{latex}
+	\documentclass[a4paper, 12pt]{article}
+	\begin{document}
+	\end{document}
+\end{minted}
+Arguments are input using the \mintinline{latex}|{| and \mintinline{latex}|}|
+symbols, and multiple arguments would require multiple sets of
+\mintinline{latex}|{| and \mintinline{latex}|}|. Optional parameters are input
+using the \mintinline{latex}{[} and \mintinline{latex}{]} symbols, but multiple
+optional parameters are listed within the single use of \mintinline{latex}{[}
+and \mintinline{latex}{]} separated by commas. Not every command requires input
+arguments; for example, to format LaTeX as \LaTeX, one uses the command
+\mintinline{latex}{\LaTeX}.
+
 
 \subsection{Dynamic bibliographies and \textsc{Bib}\TeX}
 \label{sec:bibtex}
 
+Another major advantage to \LaTeX\ is its ability to dynamically format
+bibliographies and references. There are a number of different ways to format
+bibliographies in \LaTeX, but we will discuss specifically \textsc{Bib}\TeX,
+written by Oren Patashnik and Leslie Lamport in the 1980s. 
+
+Have you ever written a document, and after having gotten halfway through, say,
+you decide to add another reference?  Depending on the style adopted in your
+document, this might have caused you lots of additional work. Not one would you
+have to potentially re-order your bibliography, but you might have to change
+several references to account for this. Having a dynamically built bibliography
+avoids all of this pain. 
+
+To use \textsc{Bib}\TeX, one simply includes two lines wherever the references
+should go---usually at the end of the document:
+\begin{minted}{latex}
+	\bibliography{<bib file name>}
+	\bibliographystyle{<style>}
+\end{minted}
+Thus, in order to use \textsc{Bib}\TeX\ one needs an additional source file: a
+\texttt{bib} file. A \texttt{bib} file collects bibliography entries that \textsc{Bib}\TeX\ can read. \Cref{fig:bibtex} provides an example.
+
+\begin{figure}[h]
+\begin{minted}{bibtex}
+	@book{Macdonald1998,
+	    title={Symmetric functions and Hall polynomials},
+	    author={Macdonald, Ian Grant},
+	    year={1998},
+	    publisher={Oxford university press}
+	}
+\end{minted} 
+\caption{A sample \textsc{Bib}\TeX\ entry.}
+\label{fig:bibtex}
+\end{figure}
+
+In the first line of \Cref{fig:bibtex}, \mintinline{bibtex}{@book} tells
+\textsc{Bib}\TeX\ that the bibliography entry is a book. The braces indicate the
+block of code designated for this particular entry. And the
+\texttt{Macdonald1998} is the \define{tag}---more on this soon. The lines in
+between the braces give bibliographical information. As the example illustrates:
+we have the book's title, author, year of publication, and publisher. There are
+more potential entries one could include as well. The entry will be formatted
+relative to the specified style in the output \texttt{pdf} file.
+
+When one wants to cite a particular reference in the body of their \texttt{tex}
+file, one simply writes
+\begin{minted}{latex}
+	\cite[<options>]{<tag>}
+\end{minted}
+and a citation for that particular entry (relative to the tag) matching the
+given style is produced. Using the example in \Cref{fig:bibtex}, we might write
+the following sentence in the body of our \texttt{tex} file:
+\begin{minted}{latex}
+	By \cite[Theorem 3.14]{Macdonald1998}, the proof is complete. 
+\end{minted}
+
+The \texttt{bib} file does not need to be ordered. \textsc{Bib}\TeX\ will take
+care of ordering all of the bibliography entries properly. Therefore, the
+\texttt{bib} file can simply be a dump for bibliography entries. All a user
+needs to know are the relevant tags for the references to cite. 
+
+Using \textsc{Bib}\TeX\ modifies the basic workflow described in
+\Cref{sec:workflow}. After running \texttt{pdflatex} one needs to run
+\texttt{bibtex} twice, and then \texttt{pdflatex} again. Overleaf and other
+similar programs can run all of this with one button, so we will not dwell on
+this. 
+
+\begin{remark}[Warning]
+	\textsc{Bib}\TeX\ can be challenging for newcomers to work with for many
+	reasons. Some of the pain is alleviated by Overleaf and other programs, but
+	this still does not make it easy.
+\end{remark}
 
 \subsection{Mathematical symbols and formulae}
 \label{sec:latex-math}
 
 
+
+
 \subsection{\LaTeX\ Environments}
 \label{sec:latex-envs}
+
+One of the general blueprints of \LaTeX\ markup is an \define{environment}. A
+\LaTeX\ environment has the following basic structure:
+\begin{minted}{latex}
+	\begin{<environment>}      % Explicit start of environment
+		%
+		% Content
+		%
+	\end{<environment>}	% Explicit end of environment
+\end{minted}
+One could say that a \texttt{tex} file is essentially a \LaTeX\ environment
+using \texttt{document}. We will see many examples of these later.
+
+
+\subsection{Document layout}
+
 
 
 \subsection{Some \LaTeX\ packages}
