@@ -1,5 +1,8 @@
 \documentclass[a4paper, 12pt]{article}
 
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage{hyperref}
 \hypersetup{
@@ -9,9 +12,6 @@
 	urlcolor=blue,
 	citecolor=blue,
 }
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
 \usepackage[margin=3cm]{geometry}
 \usepackage{mathpazo}
 \usepackage{url}
@@ -29,6 +29,7 @@
 \usepackage{afterpage}
 \usepackage[svgnames]{xcolor}
 \usepackage{minted}
+\setminted{tabsize=4}
 
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
@@ -108,7 +109,9 @@ whether or not it is the final product). This remove the user from having to
 remember commands for the document layout, and it has a lower barrier of entry,
 which is one of its strongest advantages. However, this is not the norm for
 professionals using many mathematical symbols, and the primary disadvantage to
-these kinds of software is their sluggish pace. 
+these kinds of software is their sluggish pace---the secondary disadvantage is
+that many people struggle to pronounce WYSIWYG causing people to avoid such
+software. I certainly cannot pronounce it properly.
 
 One of the first typesetting software for mathematics is \TeX---if not
 \textit{the} first. It was written by Donald Knuth\footnote{You can read Knuth's
@@ -122,8 +125,8 @@ beautiful and high-quality mathematical symbols. Both \TeX\ and \LaTeX\ are free
 and open-source software. 
 
 As alluded to previously, these are typesetting software, so a user writes in a
-markup language, usually in a \texttt{tex}-file; then the user compiles the
-file, and a \texttt{pdf}-file is produced. There are other options for output,
+markup language, usually in a \texttt{tex} file; then the user compiles the
+file, and a \texttt{pdf} file is produced. There are other options for output,
 but this will be sufficient for us. Another asset is that one can import third
 party \LaTeX\ packages to perform more specialized tasks. We will become
 familiar with basic \LaTeX\ formatting and use some packages to help construct
@@ -132,7 +135,16 @@ beautiful documents.
 For web-based mathematical symbols, MathJax~\cite{MathJax} is primarily used.
 However, there is a new, much faster, alternative called KaTeX~\cite{KaTeX}.
 Currently, KaTeX can only do a (proper) subset of what MathJax can do, but KaTeX
-does enough for everything I have needed for my website. 
+does enough for everything I have needed for my website---and I have a lot of
+complicated formulae on my website. 
+
+\begin{remark}
+	Nobody really cares how you pronounce \LaTeX, but some of the popular ways
+	are ``law-tech'' and ``lay-tech''. This is because Knuth indicated that
+	\TeX\ ought to be pronounced like ``tech'' \cite[Paragraph 2]{TeX-draft}.
+	The true non-conformists pronounce it ``lay-techs''. I just prefer to
+	pronounce it as \LaTeX.
+\end{remark}
 
 \subsection{How to get \LaTeX}
 
@@ -155,7 +167,7 @@ enables users to interface with \LaTeX\ through cloud-based services. It uses a
 sufficient for our module. The major advantage is that one does not have to
 worry about installing and package management; all of this is done cloud-side.
 Moreover Overleaf simplifies the workflow slightly by allowing for instant
-compilation. 
+compilation. \#NotSponsored 
 
 \subsection{Workflow and document structure}
 \label{sec:workflow}
@@ -163,11 +175,12 @@ compilation.
 The basic workflow is perhaps only a little more complicated than how it might
 be for WYSIWYG software. Here is the basic workflow. 
 \begin{enumerate}
-	\item Create a \texttt{tex}-file and write \LaTeX\ markup. 
-	\item Compile the \texttt{tex}-file with the command \texttt{pdflatex}.
-	\item Sometimes errors are raised and need to be addressed. If no errors
-	arise, then a \texttt{pdf}-file is created (or overwritten).
-	\item View and review the output \texttt{pdf}-file. 
+	\item Create a \texttt{tex} file and write \LaTeX\ markup. 
+	\item Compile the \texttt{tex} file with the command \texttt{pdflatex}.
+	\item Sometimes errors are raised and need to be addressed. It is acceptable
+	to cry when this happens; it happens to all of us. If no errors arise, then
+	a \texttt{pdf} file is created (or overwritten). 
+	\item View and review the output \texttt{pdf} file. 
 \end{enumerate}
 With the exception of the initial creation of the file, all of these steps are
 repeated often. How often? That depends on you and your situation. I would
@@ -177,7 +190,7 @@ carefully what has changed.
 The basic format of a \LaTeX\ document is simple. There are three commands that
 must be present, and often one tries to adhere to some logical structure due to
 collaborations or just to readability over longer periods of time. The first
-command that appears in a functioning \texttt{tex}-file is the following:
+command that appears in a functioning \texttt{tex} file is the following:
 \begin{minted}{latex}
 	\documentclass[<options>]{<style>}
 \end{minted}
@@ -202,8 +215,8 @@ There are also AMS-inspired article and book classes: \texttt{amsart} and
 	\begin{document}
 	\end{document}
 \end{minted}
-which encapsulate the main body of the \texttt{tex}-file. \Cref{fig:tex-file}
-shows the basic layout of a \texttt{tex}-file.
+which encapsulate the main body of the \texttt{tex} file. \Cref{fig:tex-file}
+shows the basic layout of a \texttt{tex} file.
 
 \begin{figure}[h]
 	\centering
@@ -220,6 +233,10 @@ shows the basic layout of a \texttt{tex}-file.
 	\caption{Basic structure of a \texttt{tex} file.}
 	\label{fig:tex-file}
 \end{figure}
+
+Although I have never heard anyone refer to the preamble as the head, I think it
+makes sense---even if it causes me to stop and use my preamble to figure out
+what is meant by it.
 
 \subsection{Source files}
 
@@ -360,9 +377,9 @@ needs to know are the relevant tags for the references to cite.
 
 Using \textsc{Bib}\TeX\ modifies the basic workflow described in
 \Cref{sec:workflow}. After running \texttt{pdflatex} one needs to run
-\texttt{bibtex} twice, and then \texttt{pdflatex} again. Overleaf and other
-similar programs can run all of this with one button, so we will not dwell on
-this. 
+\texttt{bibtex} twice, and then \texttt{pdflatex} again. Often more crying
+ensues. Overleaf and other similar programs can run all of this with one button,
+so we will not dwell on this. 
 
 \begin{remark}[Warning]
 	\textsc{Bib}\TeX\ can be challenging for newcomers to work with for many
@@ -373,8 +390,73 @@ this.
 \subsection{Mathematical symbols and formulae}
 \label{sec:latex-math}
 
+\LaTeX\ provides two primary methods to output mathematical symbols: inline and
+as a displayed line. To display maths inline, one initiates with
+\mintinline{latex}|$|, ending with the same symbol. One can also start with
+\mintinline{latex}|\(| and end with \mintinline{latex}|\)|. Thus,
+\mintinline{latex}|$e^x$| is displayed as $e^x$. The Greek alphabet is accessed
+by commands like \mintinline{latex}|\pi| for $\pi$ and \mintinline{latex}|\Pi|
+for $\Pi$. 
 
+Exponents are indicated by \mintinline{latex}|^| and subscripts by
+\mintinline{latex}|_|. Without additional braces, both \mintinline{latex}|^| and
+\mintinline{latex}|_| change only the next character. Note the difference in
+\mintinline{latex}|$e^{2i\pi}$| as $e^{2i\pi}$ as compared to
+\mintinline{latex}|$e^2i\pi$| as $e^2i\pi$. The same holds for subscripts. One
+can use both exponents and subscripts; for example
+\mintinline{latex}|$M_{ij}^4$| is displayed as $M_{ij}^4$. By using braces one
+can nest these operations. For example $x^{x^x}$ is
+\mintinline{latex}|$x^{x^x}$| and $x_i^{x_j^2 + x_k^2}$ is
+\mintinline{latex}|$x_i^{x_j^2 + x_k^2}$|. 
 
+Note that \LaTeX\ adjusts the height of each line relative to its content. For
+this reason and others, some might prefer to display more complicated
+expressions in its own displayed line. To accomplish this in \LaTeX\ one uses
+\mintinline{latex}|$$| or \mintinline{latex}|\[|, ending with either
+\mintinline{latex}|$$| or \mintinline{latex}|\]|, respectively (and not mixing).
+For example, 
+\begin{minted}{latex}
+\[ 
+	x_i^{x_j^2 + x_k^2}.
+\] 
+\end{minted}
+produces 
+\[ 
+	x_i^{x_j^2 + x_k^2}.
+\] 
+
+A few more examples of displayed mathematics include the following.
+\begin{minted}{latex}
+\[ 
+	\int_a^b f'(t) dt = f(b) - f(a). 
+\] 
+\end{minted}
+produces 
+\[ 
+	\int_a^b f'(t) dt = f(b) - f(a). 
+\] 
+And 
+\begin{minted}{latex}
+\[
+	\lim_{n\to \infty} \sum_{k=1}^n \frac{1}{k} \rightarrow \infty. 
+\]
+\end{minted}
+yields 
+\[
+	\lim_{n\to \infty} \sum_{k=1}^n \frac{1}{k} \rightarrow \infty. 
+\]
+Notice that the previous example looks differently when typed inline:\\
+\mintinline{latex}|$\lim_{n\to \infty} \sum_{k=1}^n \frac{1}{k} \rightarrow \infty$|\\ 
+is displayed as $\lim_{n\to \infty} \sum_{k=1}^n \frac{1}{k}
+\rightarrow \infty$, not as elegant I would say. 
+
+\begin{remark}
+	There is a heated debate whether or not one should use
+	\mintinline{latex}|$$| or the pair \mintinline{latex}|\[| and
+	\mintinline{latex}|\]|. It is very controversial, and by now you see where I
+	stand. (This is of course a joke---perhaps some people are loyal to a
+	particular style, but it is completely pointless. Bring on the haters.)
+\end{remark}
 
 \subsection{\LaTeX\ Environments}
 \label{sec:latex-envs}
@@ -382,25 +464,164 @@ this.
 One of the general blueprints of \LaTeX\ markup is an \define{environment}. A
 \LaTeX\ environment has the following basic structure:
 \begin{minted}{latex}
-	\begin{<environment>}      % Explicit start of environment
+	\begin{<environment>}     % Explicit start of environment
 		%
 		% Content
 		%
-	\end{<environment>}	% Explicit end of environment
+	\end{<environment>}       % Explicit end of environment
 \end{minted}
 One could say that a \texttt{tex} file is essentially a \LaTeX\ environment
-using \texttt{document}. We will see many examples of these later.
+using \texttt{document}, but people do not say that. That would be ridiculous;
+let's not promote that. 
 
+The displayed lines of math from \Cref{sec:latex-math} can be viewed as an
+environment. One can even do this in an environment format. For example,
+\begin{minted}{latex}
+	\begin{equation}
+		\sum_{n=1}^\infty \frac{1}{n^s} 
+			= \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}} 
+	\end{equation}
+\end{minted}
+yields
+\begin{equation}
+	\sum_{n=1}^\infty \frac{1}{n^s} 
+		= \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}} 
+\end{equation}
 
-\subsection{Document layout}
+\begin{remark}\label{rem:labels}
+	As a digression, notice in the previous example that there is a reference
+	number to the right of the equation, namely (1.1). If we provide a label for
+	the equation, we can reference that label anywhere in the document and it
+	will produce the correct reference number. For example 
+	\begin{minted}{latex}
+		\begin{equation}\label{eqn:Euler-decomp}
+			\sum_{n=1}^\infty \frac{1}{n^s} 
+				= \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}} 
+		\end{equation}
+	\end{minted}
+	yields 
+	\begin{equation}\label{eqn:Euler-decomp}
+		\sum_{n=1}^\infty \frac{1}{n^s} 
+			= \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}} 
+	\end{equation}
+	and we can reference it with \mintinline{latex}|\ref{eqn:Euler-decomp}|
+	producing \ref{eqn:Euler-decomp}. Equations usually have special
+	formatting---note the parentheses---so to account for this, there is a
+	special way to reference equations:
+	\mintinline{latex}|\eqref{eqn:Euler-decomp}| yields
+	\eqref{eqn:Euler-decomp}.
+\end{remark}
 
+Another mathematical environment is \texttt{align}. \textit{This uses a very
+common package that should be used every time. More about this in
+\Cref{sec:latex-packages}}.
+\begin{minted}{latex}
+	\begin{align} 
+		\sum_{n=1}^{\infty} \frac{1}{n^2} 
+		&= 1 + \frac{1}{4} + \frac{1}{9} + \cdots \\
+		&= \frac{\pi^2}{6} . 
+	\end{align}
+\end{minted}
+yields 
+\begin{align} 
+	\sum_{n=1}^{\infty} \frac{1}{n^2} 
+	&= 1 + \frac{1}{4} + \frac{1}{9} + \cdots \\
+	&= \frac{\pi^2}{6} . 
+\end{align}
+
+A few aspects to note. First observe that each line has a reference number; see
+\Cref{rem:labels} for a brief explanation on how to take advantage of these
+reference numbers. (To actually reference that particular remark, I am using
+label and ref commands. When does the rabbit hole end?!) The standard way to
+turn off these reference numbers, for example if they are unused or unwanted, is
+to append the environment name with \texttt{*}. Thus, \texttt{equation*} and
+\texttt{align*} will not produce reference numbers on the side. 
 
 
 \subsection{Some \LaTeX\ packages}
 \label{sec:latex-packages}
 
+\LaTeX\ packages are essential tools that enhance the functionality of \LaTeX.
+Packages are sets of additional commands and features that extend the
+capabilities of the basic \LaTeX\ system, often for specialized tasks. Packages
+are, therefore, designed to address specific needs, making \LaTeX\ highly
+versatile and adaptable to various document requirements.
+
+To use a \LaTeX\ package, you need to include it in the preamble of your
+document. Recall from \Cref{sec:workflow} that the preamble is the part of the
+document after \mintinline{latex}|\documentclass[<options>]{<style>}| and before
+\mintinline{latex}|\begin{document}|. To include a package, one first needs it
+to be installed in the local machine---or one can use Overleaf and avoid
+thinking about this. Then in the document (often just after the
+\mintinline{latex}|\documentclass[<options>]{<style>}|), one writes 
+\begin{minted}{latex}
+	\usepackage[<options>]{<package name>}
+\end{minted}
+Sometimes the \texttt{<options>} are relevant, and sometimes they are not. For
+example, the first few lines of this document look like 
+\begin{minted}{latex}
+	\documentclass[a4paper, 12pt]{article}
+	\usepackage{amsmath}
+	\usepackage{amsthm}
+	\usepackage{amssymb}
+	\usepackage{enumerate}
+	\usepackage{hyperref}
+	\usepackage[margin=3cm]{geometry}
+\end{minted}
+
+We will mention a few packages that might be particularly relevant. We will give
+brief summaries of their capabilities, but those interested should check the
+documentation---or probably more realistically, type exactly what you are
+looking for in Google and go from there.
+
+\subsubsection{The \texttt{amsmath} package}
+\label{sec:amsmath}
+
+One of the most useful packages for mathematical output is
+\texttt{amsmath}~\cite{amsmath}. It provides numerous environments and commands
+for formatting equations, aligning mathematical expressions, and handling
+mathematical symbols. One of the environments provided was discussed in
+\Cref{sec:latex-envs}: \texttt{align}. 
+
+The \texttt{amsmath} package provides environments for matrices:
+\texttt{matrix}, \texttt{bmatrix}, \texttt{pmatrix}. The following code 
+\begin{minted}{latex}
+	\[
+		\begin{pmatrix}
+			1 & 2 \\
+			3 & 4 \\
+		\end{pmatrix}
+	\]
+\end{minted}
+produces 
+\[
+    \begin{pmatrix}
+        1 & 2 \\
+        3 & 4 \\
+    \end{pmatrix}
+\]
+One separates elements in a given row using the \mintinline{latex}|&|, and one
+uses \mintinline{latex}|\\| to start a new row. It additionally offers commands
+\mintinline{latex}|\dfrac| and \mintinline{latex}|\tfrac|, which are like
+\mintinline{latex}|\frac|, the former is in display style and the latter in
+inline style.
 
 
+\subsubsection{The \texttt{graphicx} package} 
+
+The \texttt{graphicx} \cite{graphicx} package is a powerful tool for including
+and manipulating graphics (or images) within documents. It extends the basic
+capabilities of \LaTeX\ by providing commands for inserting images, scaling,
+rotating, and controlling their placement. 
+
+
+\subsubsection{The \texttt{listings} package} 
+
+\subsubsection{The \texttt{hyperref} package}
+
+\subsubsection{The \texttt{siunitx} package}
+
+\subsubsection{The \texttt{tikz} package}
 
 \newpage
 
