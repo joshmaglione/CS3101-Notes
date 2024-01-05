@@ -78,8 +78,8 @@ Communicating mathematics and performing long computations are both vitally
 important and challenging. Thankfully there is a wide selection of software to
 make these tasks more manageable. In this module, we will explore software used
 by everyday mathematicians and scientists. These include biologists, chemists,
-computer scientists, data scientists, financial analysts, educators, engineers,
-and physicists. 
+computer scientists, data scientists, financial analysts, your friends and
+family, educators, engineers, and physicists. 
 
 The goal is to build a foundation by using some of the most ubiquitous software
 in the field. This will help students throughout their career in and out of
@@ -474,6 +474,8 @@ One could say that a \texttt{tex} file is essentially a \LaTeX\ environment
 using \texttt{document}, but people do not say that. That would be ridiculous;
 let's not promote that. 
 
+\subsubsection{The \texttt{equation} environment}
+
 The displayed lines of math from \Cref{sec:latex-math} can be viewed as an
 environment. One can even do this in an environment format. For example,
 \begin{minted}{latex}
@@ -512,6 +514,8 @@ yields
 	\eqref{eqn:Euler-decomp}.
 \end{remark}
 
+\subsubsection{The \texttt{align} environment}
+
 Another mathematical environment is \texttt{align}. \textit{This uses a very
 common package that should be used every time. More about this in
 \Cref{sec:latex-packages}}.
@@ -537,6 +541,122 @@ turn off these reference numbers, for example if they are unused or unwanted, is
 to append the environment name with \texttt{*}. Thus, \texttt{equation*} and
 \texttt{align*} will not produce reference numbers on the side. 
 
+\subsubsection{The \texttt{center} environment}
+
+The \texttt{center} environment center justifies the text within the
+environment. For example 
+\begin{minted}{latex}
+	\begin{center}
+		This text is centered.
+	\end{center}
+\end{minted}
+produces
+\begin{center}
+	This text is centered.
+\end{center}
+
+\subsubsection{the \texttt{tabular} environment}
+
+The \texttt{tabular} environment is used for creating tables in \LaTeX. It
+allows one to specify the alignment, formatting, and content of each cell within
+the table. For example, we can create a center-justified table with the following code:
+\begin{minted}{latex}
+	\begin{center}
+	\begin{tabular}{|l|c|r|}
+		\hline
+		\textbf{My} & \textbf{Favorite} & \textbf{Table} \\
+		\hline
+		Look, & Ma & no \\
+		\hline
+		hands! & he & shouted \\
+		\hline 
+		before & crashing & (more data) \\
+		\hline
+	\end{tabular}
+	\end{center}
+\end{minted}
+It produces the following table:
+\begin{center}
+	\begin{tabular}{|l|c|r|}
+		\hline
+		\textbf{My} & \textbf{Favorite} & \textbf{Table} \\
+		\hline
+		Look, & Ma & no \\
+		\hline
+		hands! & he & shouted \\
+		\hline 
+		before & crashing & (more data) \\
+		\hline
+	\end{tabular}
+\end{center}
+The argument \mintinline{latex}{{|l|c|r|}} indicates that the table should have
+four vertical lines; the cells in the first column should be left-justified; the
+cells in the second column should be center-justified; and the cells in the
+third column should be right-justified. The \mintinline{latex}|\hline| command
+is used to draw horizontal lines between rows. The symbol \mintinline{latex}|&|
+is used to separate cells within a given row, and the symbol
+\mintinline{latex}|\\| is used to create new rows in the table. 
+
+\subsubsection{The \texttt{enumerate} and \texttt{itemize} packages}
+
+The \texttt{enumerate} environment is employed to create ordered lists. It
+enables the user to specify items within the list, automatically numbering them
+in the desired format---it's magical moment when you do not have to renumber
+items in your list. The following 
+\begin{minted}{latex}
+	\begin{enumerate}
+		\item First item,
+		\item Second item,
+		\item Another item,
+		\item I am losing count,
+		\item but it does not matter because I do not,
+		\item have to,
+		\item count!
+	\end{enumerate}
+\end{minted}
+produces the following numbered list:
+\begin{enumerate}
+	\item First item,
+	\item Second item,
+	\item Another item,
+	\item I am losing count,
+	\item but it does not matter because I do not,
+	\item have to,
+	\item count!
+\end{enumerate}
+Notices the \mintinline{latex}|\item| command is used to delineate individual
+entries within the list. An \texttt{enumerate} without an
+\mintinline{latex}|\item| is like a goose around her goslings---easily angered,
+it's best to steer clear from them, trust me.
+
+One can skip or simply change the numbering using
+\mintinline{latex}|\setcounter|, but I will not go into the details here. There
+are plenty of examples on the Internet. 
+
+You can nest enumerate. For example:
+\begin{minted}{latex}
+	\begin{enumerate}
+		\item Look at me.
+		\item \begin{enumerate}
+			\item I can make
+			\item nested enumerates.
+		\end{enumerate}
+		\item So cool.
+	\end{enumerate}
+\end{minted}
+produces 
+\begin{enumerate}
+	\item Look at me.
+	\item \begin{enumerate}
+		\item I can make
+		\item nested enumerates.
+	\end{enumerate}
+	\item So cool.
+\end{enumerate}
+
+The \texttt{itemize} environment works in much the same way as
+\texttt{enumerate} except that produces unordered lists. The default is bullet
+points. 
 
 \subsection{Some \LaTeX\ packages}
 \label{sec:latex-packages}
@@ -612,16 +732,33 @@ inline style.
 The \texttt{graphicx} \cite{graphicx} package is a powerful tool for including
 and manipulating graphics (or images) within documents. It extends the basic
 capabilities of \LaTeX\ by providing commands for inserting images, scaling,
-rotating, and controlling their placement. 
+rotating, and controlling their placement. For example 
+\begin{minted}{latex}
+	\begin{center}
+		\includegraphics[scale=0.2]{imgs/Sherlock.jpg}
+	\end{center}
+\end{minted}
+produces a picture of my dog
+\begin{center}
+	\includegraphics[scale=0.2]{imgs/Sherlock.jpg}
+\end{center}
 
 
-\subsubsection{The \texttt{listings} package} 
+\subsubsection{What now?}
 
-\subsubsection{The \texttt{hyperref} package}
+There are over 4000 packages, so I guess we should go through them all one by
+one. This will surely be on the exam. I recommend, in particular,  checking out
+the following packages---at least see how people might use these packages. 
+\begin{itemize}
+	\item \texttt{amsthm} : Builds a number of theorem-like environments and a proof environment.
+	\item \texttt{hyperref} : Enables references and citations to produce hyperlinks within the \texttt{pdf} file. (This file uses it.)
+	\item \texttt{listings} : Displays code and pseudo-code in a structure block.
+	\item \texttt{siunitx} : For those working often with SI units, this can help manage it all.
+	\item \texttt{tikz} : Very powerful image producing package. The possibilities are stunning.
+\end{itemize}
 
-\subsubsection{The \texttt{siunitx} package}
 
-\subsubsection{The \texttt{tikz} package}
+
 
 \newpage
 
