@@ -311,6 +311,19 @@ and \mintinline{latex}{]} separated by commas. Not every command requires input
 arguments; for example, to format LaTeX as \LaTeX, one uses the command
 \mintinline{latex}{\LaTeX}.
 
+One often organizes an article into sections, subsections, subsubsection, etc.
+Similarly for books into parts, chapters, sections, etc. These can be easily
+managed using standard commands. For example in an \texttt{article} document
+class, one can use 
+\begin{minted}{latex}
+	\section{<title>}
+	\subsection{<title>}
+	\subsubsection{<title>}
+\end{minted}
+to produce the desired outcome. For parts and chapters, analogous commands
+exist, but errors might be raised if not in a document class that supports them.
+For example, \texttt{article} does not support
+\mintinline{latex}|\chapter{<title>}|.
 
 \subsection{Dynamic bibliographies and \textsc{Bib}\TeX}
 \label{sec:bibtex}
