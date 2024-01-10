@@ -1,0 +1,43 @@
+\let\emphasized\emph
+\let\strong\textbf
+\renewcommand{\emph}[1]{\textbf{#1}}
+\renewcommand{\textbf}[1]{\textcolor{Blue}{\strong{#1}}}
+\usepackage{hyperref}
+\usepackage{amsmath,amscd,amsthm,mathtools,qtree,tikz,tikz-cd,mathpazo}
+\usepackage[T1]{fontenc}
+\usepackage[svgnames]{xcolor}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{url}
+\usefonttheme{serif}
+\usefonttheme{professionalfonts}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=blue,
+	urlcolor=blue,
+	citecolor=blue,
+}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{cor}{Corollary}
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{exa}{Example}
+\newtheorem*{nonexa}{Non-example}
+\newtheorem*{exc}{Exercise}
+\newtheorem*{rem}{Remark}
+\newtheorem*{qu}{Question}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\leq}{\le}
+\renewcommand{\geq}{\ge}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\newcommand{\QED}{\hfill$\qed$}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
