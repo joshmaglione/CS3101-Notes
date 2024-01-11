@@ -325,6 +325,20 @@ exist, but errors might be raised if not in a document class that supports them.
 For example, \texttt{article} does not support
 \mintinline{latex}|\chapter{<title>}|.
 
+Many document classes also have their own way of formatting elements like the
+title, author, and date of a document. To access this, usually one includes the
+following in their preamble.
+\begin{minted}{latex}
+	\title{<title>}
+	\author{<author>}
+	\date{<date>}
+\end{minted}
+One can type \mintinline{latex}|\date{\today}| to display today's date, provided
+the document is compiled today. To display the title, author, and date, include the following command in the body of the document.
+\begin{minted}{latex}
+	\maketitle
+\end{minted}
+
 \subsection{Dynamic bibliographies and \textsc{Bib}\TeX}
 \label{sec:bibtex}
 
