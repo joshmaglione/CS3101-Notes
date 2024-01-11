@@ -21,7 +21,6 @@
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{graphicx}
-\usepackage{pgfplots}
 \usepackage{cleveref}
 \usepackage{bbm}
 \usepackage{wrapfig}
@@ -397,6 +396,21 @@ the following sentence in the body of our \texttt{tex} file:
 \begin{minted}{latex}
 	By \cite[Theorem 3.14]{Macdonald1998}, the proof is complete. 
 \end{minted}
+
+There are many different styles for \textsc{Bib}\TeX. Here are a few examples.
+\begin{itemize}
+	\item \texttt{plain} : This is one of the original BibTeX styles. It formats entries in a simple, straightforward manner and sorts them alphabetically by author.
+	\item \texttt{alpha}: This style creates labels from the author's name and
+	the year of publication. It's handy for author-year citations.
+	\item \texttt{abbrv}: Similar to the plain style, but it abbreviates first names and journal names. It's useful for more compact bibliographies.
+	\item \texttt{IEEEtran}: Used for formatting bibliographies in the style of the Institute of Electrical and Electronics Engineers (IEEE).
+	\item \texttt{acm}: For formatting according to the style guidelines of the Association for Computing Machinery (ACM).
+	\item \texttt{apa}: Adheres to the formatting guidelines of the American Psychological Association. Requires additional packages like \texttt{apacite}.
+	\item \texttt{nature}: Mimics the citation style of the journal 'Nature'. This style is often used in scientific publications.
+	\item \texttt{chicago}: This style follows the guidelines of the Chicago Manual of Style. Useful for humanities and social sciences.
+	\item \texttt{mla}: Suitable for documents adhering to the Modern Language Association format, commonly used in the humanities.
+	\item \texttt{amsplain}: Used for formatting in the style of the American Mathematical Society, particularly suitable for mathematics and related disciplines.
+\end{itemize}
 
 The \texttt{bib} file does not need to be ordered. \textsc{Bib}\TeX\ will take
 care of ordering all of the bibliography entries properly. Therefore, the
