@@ -34,6 +34,7 @@
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
 
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{thm}{Theorem}[section]
 \newtheorem*{thm*}{Theorem}
 \newtheorem*{con*}{Conjecture}
@@ -754,6 +755,65 @@ uses \mintinline{latex}|\\| to start a new row. It additionally offers commands
 inline style.
 
 
+\subsubsection{The \texttt{amsthm} package}
+
+The \texttt{amsthm} package is specifically designed to facilitate the
+typesetting of theorems, lemmas, definitions, and similar structures in a
+document. It is part of the collection of \LaTeX\ packages offered by the
+American Mathematical Society (along with \texttt{amsmath}), offering enhanced
+customization and consistency in the presentation of mathematical theorems and
+related structures.
+
+The key features of the package are 
+\begin{enumerate}
+	\item Theorem-like Environments: Allows you to define new theorem-like
+	structures (like Theorem, Lemma, Corollary, Proposition, Definition,
+	Example, Remark).
+	\item Customization: Provides options to customize the style of theorem-like
+	environments, such as italicized or normal text, numbering, and shared or
+	independent counters.
+	\item Proof Environment: Offers a dedicated proof environment for
+	typesetting proofs, automatically adding a QED symbol at the end.
+\end{enumerate}
+
+One needs to first define the theorem-like environment. There are two main commands for doing this:
+\begin{minted}{latex}
+	\newtheorem{<name>}{<printed output>}[<numbered within>]
+	\newtheorem{<name>}[<numbered like>]{<printed output>}
+\end{minted}
+As an example, we define the following in our preamble.
+\begin{minted}{latex}
+	\newtheorem{theorem}{Theorem}[section]
+\end{minted}
+Now we can write theorems in a dedicated environment using 
+\begin{minted}{latex}
+	\begin{theorem}
+		The equation $x^n + y^n = z^n$ has no solution in 
+		the positive integers for $n \geq 3$.
+	\end{theorem}
+\end{minted}
+This yields the following.
+
+\begin{theorem}
+	The equation $x^n + y^n = z^n$ has no solution in 
+	the positive integers for $n \geq 3$.
+\end{theorem}
+
+We can cross-reference by using \mintinline{latex}|\label{<tag>}| and
+\mintinline{latex}|\ref{<tag>}|. Let's label our theorem:
+\begin{minted}{latex}
+	\begin{theorem}\label{Fermat}
+		The equation $x^n + y^n = z^n$ has no solution in 
+		the positive integers for $n \geq 3$.
+	\end{theorem}
+\end{minted}
+This produces
+\begin{theorem}\label{Fermat}
+	The equation $x^n + y^n = z^n$ has no solution in 
+	the positive integers for $n \geq 3$.
+\end{theorem}
+\noindent We can reference Theorem~\ref{Fermat} by \mintinline{latex}|\ref{Fermat}|.
+
 \subsubsection{The \texttt{graphicx} package} 
 
 The \texttt{graphicx} \cite{graphicx} package is a powerful tool for including
@@ -777,7 +837,6 @@ There are over 4000 packages, so I guess we should go through them all one by
 one. This will surely be on the exam. I recommend, in particular,  checking out
 the following packages---at least see how people might use these packages. 
 \begin{itemize}
-	\item \texttt{amsthm} : Builds a number of theorem-like environments and a proof environment.
 	\item \texttt{hyperref} : Enables references and citations to produce hyperlinks within the \texttt{pdf} file. (This file uses it.)
 	\item \texttt{listings} : Displays code and pseudo-code in a structure block.
 	\item \texttt{siunitx} : For those working often with SI units, this can help manage it all.
