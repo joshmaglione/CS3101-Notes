@@ -951,30 +951,84 @@ For the remainder of the module, we will be using Jupyter notebooks.
 Thankfully there are a number of ways to run Jupyter on your machine. I will
 describe a few ways and give advantages and disadvantages for all the methods.
 If you do not know what to do, and do not want to install anything on your
-machine, you can work in browsers. See \Cref{}
+machine, you can work in browsers; see \Cref{sec:cocalc,,sec:colab}.
 
 \subsubsection{Manual}
 \label{sec:manual}
-As always,
-one can install Jupyter on the machine---to do this, one needs Python; see the
-Jupyter website~\cite{Jupyter} for more details. 
+
+As always, one can install Jupyter on the machine---to do this, one needs
+Python; see the Jupyter website~\cite{Jupyter} for more details. One needs to
+use \texttt{pip} for this method.
+
+The major advantages are that you have full control of what you install; you do
+not need a special account; you do not need to use a browser or an internet
+connection. 
+
+The major disadvantages are that you have to install everything yourself using
+the terminal and the Python package installer \texttt{pip}. [This is easy if you
+are already comfortable with the terminal.]
 
 \subsubsection{Anaconda}
 \label{sec:anaconda}
 
+There is a (rather bulky) manager called Anaconda~\cite{Anaconda} that will
+install Python and Jupyter Notebooks, among other things as well, on your
+machine. This is a rather popular option, and I recommend this method if you
+want it on your local machine, provided you do not feel comfortable with the
+terminal. 
+
+The major advantages are that you have all the components on your own machine,
+so you do not need to work in a browser nor do you need an internet connection.
+Everything is installed through the Anaconda manager. 
+
+The major disadvantages are that you have to install several extra programs
+(over 5 GB). 
+
 \subsubsection{Colab}
 \label{sec:colab}
+
+Google has developed the Colaboratory~\cite{Colab}, which is a browser-based
+Jupyter notebook. In order to execute code in a notebook, one needs a Google
+account. Notebooks get saved into the account's Google Drive.
+
+The major advantages are that Google takes care of everything for you.
+Everything runs smoothly and easily.
+
+The major disadvantage is that you have to have or link your Google account. I
+am not sure what information they are collecting
 
 \subsubsection{Cocalc}
 \label{sec:cocalc}
 
+The makers of SageMath have built a website called Cocalc~\cite{Cocalc} where
+one can create, edit, and execute Jupyter notebooks in the browser. Accounts are
+free, but without a license, you can only execute code on shared resources
+among, presumably, everyone else using the software in the world. Thus, it is
+very slow. [I am looking to see if the university has a cocalc server, and if
+not, whether we could get one.]
+
+The major advantages are that SageMath takes care of everything for you, and you
+do not need to install anything.
+
+The major disadvantages are that you have to have an account; it is free, but I
+do not know what data is collected of you. Without a paid license, executing
+code is very slow.
+
+
 \subsubsection{Binder}
 \label{sec:binder}
-There are at least two options for free cloud-based Jupyter notebooks. The first
-is through Binder~\cite{Binder}. The second is through Google's Colab server
-\cite{Colab}; however in order to run the notebooks, one needs to use or create
-a Google account. Use Colab \textit{only if you want to}---it is not required
-for the module.
+
+The makers of Jupyter notebook have developed Binder~\cite{Binder}, which is a
+way of running Jupyter notebooks in the browser. However, it seems this is only
+for running notebooks and not creating an editing notebooks. Binder is suitable
+to follow along in the lecture, but when you need to write your own notebooks,
+you will need to use something else.
+
+The major advantages are that you do not need to install anything, and you do
+not need an account for this.
+
+The major disadvantage is that this is for reading and executing only. You
+cannot create and edit notebooks.
 
 \begin{center}
 	I hope to see you in the Jupyter notebooks. 
