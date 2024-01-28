@@ -42,12 +42,3 @@ most popular and versatile languages.
 ![](../imgs/Jupyter.png)
 
 - Offers an interactive environment for various programming languages, especially Python, as well as R, Julia, etc.
-
-# How to get Jupyter
-
-- One can install Jupyter on the machine---to do this, one needs Python.
-- At least two options for free cloud-based Jupyter notebooks.
-    1. [Binder](https://mybinder.org/) : Project Jupyter
-    2. [Colab](https://colab.research.google.com/) : Google
-- Binder has no strings attached, but the loadtime can be slow.
-- Colab requires a Google account. Use if you want---not required!
