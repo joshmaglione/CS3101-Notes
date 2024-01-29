@@ -12,3 +12,5 @@
 .DS_Store
 *.blg
 _minted*
+.ipynb_*
+.virtual_*
